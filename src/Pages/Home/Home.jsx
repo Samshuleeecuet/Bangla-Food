@@ -7,6 +7,7 @@ const Home = () => {
         <>
         <Banner></Banner>
         <ChefSection></ChefSection>
+
         </>
     );
 };
