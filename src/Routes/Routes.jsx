@@ -5,6 +5,7 @@ import {
 import Main from '../Layout/Main';
 import Home from '../Pages/Home';
 import ChefRecepies from '../Pages/ChefRecepies';
+import Blog from '../Pages/Blog/Blog';
 
   const router = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ import ChefRecepies from '../Pages/ChefRecepies';
             path: 'recepies/:id',
             element:<ChefRecepies></ChefRecepies>,
             loader: ({params})=>fetch(`http://localhost:5000/recepies/${params.id}`)
+        },
+        {
+          path:'blog',
+          element:<Blog></Blog>
         }
       ]
     },
