@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import '@smastrom/react-rating/style.css';
 import { Rating } from '@smastrom/react-rating';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const EachRecepi = ({recepi}) => {
     const {recipe_name,rating,cooking_method,ingredients}=recepi;
     const [disable,setDisable] = useState(false)
     const handleDisable =()=>{
         setDisable(true);
+        toast("The recipe is your favorite");
     }
     //console.log(ingredients)
     return (
         <>
-            <div className="card w-96 h-auto glass">
+            <div className="card w-96 h-auto glass shadow-2xl">
                 <div className="card-body text-left">
                     <h2 className="card-title">{recipe_name}</h2>
                     <p className='font-semibold'>Cooking Method:</p>
