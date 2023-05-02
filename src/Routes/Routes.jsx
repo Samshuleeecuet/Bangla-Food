@@ -9,6 +9,7 @@ import Blog from '../Pages/Blog/Blog';
 import ErrorPage from '../Pages/Error/ErrorPage';
 import Login from '../Pages/Login/Login';
 import Register from '../Pages/Login/Register';
+import PrivateRoutes from './PrivateRoutes';
 
   const router = createBrowserRouter([
     {
@@ -23,7 +24,7 @@ import Register from '../Pages/Login/Register';
         },
         {
             path: 'recepies/:id',
-            element:<ChefRecepies></ChefRecepies>,
+            element:<PrivateRoutes><ChefRecepies></ChefRecepies></PrivateRoutes>,
             loader: ({params})=>fetch(`http://localhost:5000/recepies/${params.id}`)
         },
         {

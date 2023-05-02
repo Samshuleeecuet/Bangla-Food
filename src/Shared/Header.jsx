@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../providers/AuthProvider';
 
 const Header = () => {
+    const {user,logOut} = useContext(AuthContext);
+    //console.log(user);
     return (
             <div className="navbar bg-base-100 font-bold px-4">
             <div className="navbar-start">
@@ -12,8 +15,14 @@ const Header = () => {
                 <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 gap-4 shadow bg-base-100 rounded-box w-52">
                     <li><NavLink to='/' className={({ isActive }) => (isActive ? 'active' : 'default')}>Home</NavLink></li>
                     <li><NavLink to='/blog' className={({ isActive }) => (isActive ? 'active' : 'default')}>Blog</NavLink></li>
-                    <li><NavLink to='/login' className={({ isActive }) => (isActive ? 'active' : 'default')}>Login</NavLink></li>
+                    {
+                        !user && 
+                        <>
+                        <li><NavLink to='/login' className={({ isActive }) => (isActive ? 'active' : 'default')}>Login</NavLink></li>
                     <li><NavLink to='/register' className={({ isActive }) => (isActive ? 'active' : 'default')}>Register</NavLink></li>
+                        
+                        </>
+                    }
                 </ul>
                 </div>
                 <Link className="normal-case font-bold text-2xl">BanglaFood</Link>
@@ -22,21 +31,31 @@ const Header = () => {
                 <ul className="menu gap-4 menu-horizontal px-1">
                 <li><NavLink to='/' className={({ isActive }) => (isActive ? 'active' : 'default')}>Home</NavLink></li>
                     <li><NavLink to='/blog' className={({ isActive }) => (isActive ? 'active' : 'default')}>Blog</NavLink></li>
-                    <li><NavLink to='/login' className={({ isActive }) => (isActive ? 'active' : 'default')}>Login</NavLink></li>
+                    {
+                        !user && 
+                        <>
+                        <li><NavLink to='/login' className={({ isActive }) => (isActive ? 'active' : 'default')}>Login</NavLink></li>
                     <li><NavLink to='/register' className={({ isActive }) => (isActive ? 'active' : 'default')}>Register</NavLink></li>
+                        
+                        </>
+                    }
                 </ul>
             </div>
-            <div className="navbar-end">
-                    <ul className='menu gap-4 menu-horizontal px-1'>
-                    <li><Link className='btn btn-outline'>Log Out</Link></li>
-                    </ul>
+            {
+                user && 
+                <div className="navbar-end">
+               <ul className='menu gap-4 menu-horizontal px-1'>
+                    <Link onClick={logOut} className='btn btn-outline'>Log Out</Link>
+                </ul>
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                     <div className="w-10 rounded-full">
-                        <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" title='shakil' />
+                        <img src={user?.photoURL} title={user?.displayName} />
                     </div>
-            </label>
+                </label>
             </div>
-            </div>
+            }
+            
+        </div>
     );
 };
 

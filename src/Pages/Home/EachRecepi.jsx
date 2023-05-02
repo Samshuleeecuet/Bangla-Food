@@ -20,11 +20,11 @@ const EachRecepi = ({recepi}) => {
                     <p className='font-semibold'>Cooking Method:</p>
                     <p><small>{cooking_method}</small></p>
                     <p className='font-semibold'>Ingredients:</p>
-                    <p>1. {ingredients[0]}</p>
-                    <p>2. {ingredients[1]}</p>
-                    <p>3. {ingredients[2]}</p>
-                    <p>4. {ingredients[3]}</p>
-                    <p>5. {ingredients[4]}</p>
+                    {
+                        ingredients.map((ingredient,index)=>{
+                            return <p key={index}>{index+1} . {ingredient}</p>
+                        })
+                    }
                     <div className="card-actions pt-5 flex">
                     <div className='flex flex-grow'>
                     <Rating

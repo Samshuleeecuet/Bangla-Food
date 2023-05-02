@@ -1,12 +1,36 @@
-import React from 'react';
-import { Form, Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Form, Link, useLocation, useNavigate } from 'react-router-dom';
 import {FaGithub, FaGoogle} from "react-icons/fa";
+import { AuthContext } from '../../providers/AuthProvider';
 
 const Login = () => {
+    const {signInWithEmail,signInWithGoogle,signInWithGithub} = useContext(AuthContext);
+    const [error,setError] = useState('');
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
+
+    const handleSignIn =(e)=>{
+        e.preventDefault();
+        setError('');
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        signInWithEmail(email,password)
+        .then((result)=>{
+            const loggedUser = result.user;
+            navigate(from,{replace:true});
+            form.reset();
+        })
+        .catch(err=>{
+            const msg = err.message.split('/');
+            setError(msg[1]);
+        })
+    }
     return (
         <div className='mx-auto w-2/5 mt-14 lg:my-28'>
             <h2 className='text-center text-2xl font-extrabold pb-10 '>Login Page</h2>
-            <Form className='mb-5 '>
+            <Form onSubmit={handleSignIn} className='mb-5 '>
             <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
                     Email
@@ -18,7 +42,7 @@ const Login = () => {
                     Password
                 </label>
                 <input className="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="password" type="password" placeholder="Password"/>
-                <p className="text-red-500 text-xs italic">Please choose a password.</p>
+                <p className="text-red-500 text-xs italic">{error}</p>
                 <p className="">Don't have an account? <Link to='/register' className='text-blue-500'>Register</Link></p>
                 </div>
                 <div className="flex items-center justify-between">
@@ -33,8 +57,8 @@ const Login = () => {
             <hr className='border '/>
 
             <div className='mt-10 flex mx-10 gap-4'>
-                <button className="btn btn-outline btn-secondary"><FaGoogle className='mr-3'></FaGoogle> Sign In With Google</button>
-                <button className="btn btn-outline btn-secondary"><FaGithub className='mr-3'></FaGithub> Sign In With Github</button>
+                <button  onClick={signInWithGoogle} className="btn btn-outline btn-secondary" ><FaGoogle className='mr-3'></FaGoogle> Sign In With Google</button>
+                <button onClick={signInWithGithub} className="btn btn-outline btn-secondary"><FaGithub className='mr-3'></FaGithub> Sign In With Github</button>
                 
             </div>
         </div>

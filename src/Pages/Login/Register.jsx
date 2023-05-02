@@ -1,11 +1,43 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Form, Link } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const Register = () => {
+
+    const {createUser,updateUserData} = useContext(AuthContext);
+    const [error,setError] = useState('');
+    const handleRegister =(e)=>{
+        e.preventDefault();
+        setError('');
+        const form = e.target;
+        const name = form.name.value;
+        const photourl = form.photourl.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        if(password.length<6){
+            setError('Password must be six characters');
+            return;
+        }
+        //console.log(name,photourl,email,password);
+        createUser(email,password)
+        .then((result)=>{
+            const createUser = result.user;
+            updateUserData(createUser,name,photourl);
+            form.reset();
+            console.log(createUser);
+        })
+        .catch(err=>{
+            const msg = err.message.split('/');
+            setError(msg[1]);
+        })
+
+    }
+
+
     return (
         <div className='mx-auto w-2/5 mt-14 lg:my-28'>
             <h2 className='text-center text-2xl font-extrabold pb-10 '>Please Register</h2>
-            <Form className='mb-5 '>
+            <Form onSubmit={handleRegister} className='mb-5 '>
             <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold my-2">
                     Name
@@ -25,7 +57,7 @@ const Register = () => {
                     Password
                 </label>
                 <input className="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="password" type="password" placeholder="Password"/>
-                <p className="text-red-500 text-xs italic">Please choose a password.</p>
+                <p className="text-red-500 text-xs italic">{error}</p>
                 <p className="">Do have an account? <Link to='/login' className='text-blue-500'>Login</Link></p>
                 </div>
                 <div className="flex items-center justify-between">
