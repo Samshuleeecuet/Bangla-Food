@@ -28,7 +28,7 @@ const Login = () => {
         })
     }
     return (
-        <div className='mx-auto w-2/5 mt-14 lg:my-28'>
+        <div className='mx-auto w-4/5 lg:w-2/5 mt-14 lg:my-28'>
             <h2 className='text-center text-2xl font-extrabold pb-10 '>Login Page</h2>
             <Form onSubmit={handleSignIn} className='mb-5 '>
             <div className="mb-4">
@@ -45,18 +45,18 @@ const Login = () => {
                 <p className="text-red-500 text-xs italic">{error}</p>
                 <p className="">Don't have an account? <Link to='/register' className='text-blue-500'>Register</Link></p>
                 </div>
-                <div className="flex items-center justify-between">
+                <div className="lg:flex items-center justify-between">
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                     Log In
                 </button>
-                <Link className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+                <Link className="block lg:inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
                     Forgot Password?
                 </Link>
             </div>
             </Form>
             <hr className='border '/>
 
-            <div className='mt-10 flex mx-10 gap-4'>
+            <div className='mt-10 lg:flex lg:mx-10 gap-4'>
                 <button  onClick={signInWithGoogle} className="btn btn-outline btn-secondary" ><FaGoogle className='mr-3'></FaGoogle> Sign In With Google</button>
                 <button onClick={signInWithGithub} className="btn btn-outline btn-secondary"><FaGithub className='mr-3'></FaGithub> Sign In With Github</button>
                 

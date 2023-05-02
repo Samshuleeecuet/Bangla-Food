@@ -6,7 +6,7 @@ const Header = () => {
     const {user,logOut} = useContext(AuthContext);
     //console.log(user);
     return (
-            <div className="navbar bg-base-100 font-bold px-4">
+            <div className="navbar bg-[#EEEE] font-serif font-bold px-4">
             <div className="navbar-start">
                 <div className="dropdown">
                 <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -47,9 +47,9 @@ const Header = () => {
                <ul className='menu gap-4 menu-horizontal px-1'>
                     <Link onClick={logOut} className='btn btn-outline'>Log Out</Link>
                 </ul>
-                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <label tabIndex={0} className="btn btn-ghost btn-circle avatar ">
                     <div className="w-10 rounded-full">
-                        <img src={user?.photoURL} title={user?.displayName} />
+                    <img src={user?.photoURL} title={user?.displayName} />
                     </div>
                 </label>
             </div>

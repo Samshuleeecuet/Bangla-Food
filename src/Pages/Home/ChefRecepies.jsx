@@ -6,7 +6,7 @@ import { ToastContainer } from 'react-toastify';
 const ChefRecepies = () => {
     const chefrecepies = useLoaderData();
     return (
-        <div>
+        <div className='font-serif'>
             <ChefBanner chefrecepies={chefrecepies}></ChefBanner>
             <ChefRecepi chefrecepies={chefrecepies}></ChefRecepi>
             <ToastContainer></ToastContainer>
