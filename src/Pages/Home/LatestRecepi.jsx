@@ -9,7 +9,7 @@ const LatestRecepi = () => {
             <Player src='https://assets8.lottiefiles.com/packages/lf20_h3b950fy.json' className='player w-56' loop autoplay></Player>
             </div>
 
-            <div className="carousel mx-auto pt-10 w-3/6 h-96">
+            <div className="carousel mx-auto pt-10 w-5/6 lg:w-3/6 h-96">
             <div id="slide1" className="carousel-item relative w-full">
                 <img src="https://i.ibb.co/g6scKFH/carosel1.jpg" className="w-full rounded-2xl glass shadow-3xl" />
                 <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
