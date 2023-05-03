@@ -59,8 +59,7 @@ const AuthProvider = ({children}) => {
             unsubscribe();
         }
     },[])
-   // console.log(user);
-    //console.log(user)
+   //console.log(user);
     const logOut=()=>{
         signOut(auth)
         .then()

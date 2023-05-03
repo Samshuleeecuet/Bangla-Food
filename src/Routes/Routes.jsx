@@ -20,12 +20,12 @@ import PrivateRoutes from './PrivateRoutes';
         {
             path: '/',
             element:<Home></Home>,
-            loader: ()=>fetch('http://localhost:5000/chef'),
+            loader: ()=>fetch('https://bangla-food-server.vercel.app/chef'),
         },
         {
             path: 'recepies/:id',
             element:<PrivateRoutes><ChefRecepies></ChefRecepies></PrivateRoutes>,
-            loader: ({params})=>fetch(`http://localhost:5000/recepies/${params.id}`)
+            loader: ({params})=>fetch(`https://bangla-food-server.vercel.app/recepies/${params.id}`)
         },
         {
           path:'blog',

@@ -1,13 +1,20 @@
 import React from 'react';
+import ReactToPdf from 'react-to-pdf';
+const ref = React.createRef();
 
 const Blog = () => {
     return (
         <div className='font-serif pl-10 pr-10 pt-10 text-center'>
-            <div className='flex'>
-                <p className='text-xl font-semibold flex-grow'>Question And Answer</p>
-                <p className='btn btn-outline border-2 border-blue-200 hover:bg-slate-600 hover:text-white'>Download Pdf</p>
+            <div className='float-right'>
+            <ReactToPdf targetRef={ref} filename="blog-question.pdf" x={.5} y={.5} scale={0.8}>
+        {({toPdf}) => (
+           <p onClick={toPdf} className='btn btn-outline border-2 border-blue-200 hover:bg-slate-600 hover:text-white'>Download Pdf</p>
+        )}
+    </ReactToPdf>
+                
             </div>
-            <div className='text-justify pb-10'>
+            <div className='text-justify pb-10' ref={ref}>
+                <p className='text-xl text-center pb-10 font-semibold flex-grow'>Question And Answer</p>
                 <p className='text-xl font-semibold'>1. Tell us the differences between uncontrolled and controlled components.</p>
                 <p>In the context of a software application, the terms "uncontrolled" and "controlled" components refer to two different ways of managing the state and behavior of a user interface.<br/>
 An uncontrolled component is a component that manages its own state internally and does not rely on any external state management. This means that the state of the component is not directly accessible or modifiable from outside the component. Examples of uncontrolled components are traditional HTML form elements, like input fields and checkboxes, where the state of the component is stored internally and can be accessed through DOM APIs.<br/>

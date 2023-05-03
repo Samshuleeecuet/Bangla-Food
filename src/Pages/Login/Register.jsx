@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Form, Link } from 'react-router-dom';
+import { Form, Link, Navigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 
 const Register = () => {
@@ -14,22 +14,29 @@ const Register = () => {
         const photourl = form.photourl.value;
         const email = form.email.value;
         const password = form.password.value;
+        if(email.length==0){
+            setError('Email is required');
+            return;
+        }
+        if(password.length==0){
+            setError('Password is required');
+            return;
+        }
         if(password.length<6){
             setError('Password must be six characters');
             return;
         }
-        //console.log(name,photourl,email,password);
         createUser(email,password)
         .then((result)=>{
             const createUser = result.user;
             updateUserData(createUser,name,photourl);
             form.reset();
-            console.log(createUser);
         })
         .catch(err=>{
             const msg = err.message.split('/');
             setError(msg[1]);
         })
+
 
     }
 
@@ -50,7 +57,7 @@ const Register = () => {
                 <label className="block text-gray-700 text-sm font-bold my-2">
                     Email
                 </label>
-                <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  type="email" name="email" placeholder="Email" required/>
+                <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  type="email" name="email" placeholder="Email" />
                 </div>
                 <div className="mb-6">
                 <label className="block text-gray-700 text-sm font-bold my-2">
