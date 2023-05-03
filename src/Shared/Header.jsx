@@ -44,14 +44,13 @@ const Header = () => {
             {
                 user && 
                 <div className="navbar-end">
-               <ul className='menu gap-4 menu-horizontal px-1'>
+               <ul className='menu gap-4 menu-horizontal px-4'>
                     <Link onClick={logOut} className='btn btn-outline text-white'>Log Out</Link>
                 </ul>
-                <label tabIndex={0} className="btn btn-ghost btn-circle avatar ">
-                    <div className="w-10 rounded-full">
-                    <img src={user?.photoURL} title={user?.displayName} />
-                    </div>
-                </label>
+                <div className="tooltip tooltip-bottom w-32" data-tip={user?.displayName}>
+                     <label className="btn btn-ghost btn-circle avatar "><img className='w-10 rounded-full' src={user?.photoURL} /></label>
+                </div>
+                
             </div>
             }
             
