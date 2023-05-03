@@ -4,7 +4,7 @@ b7a10-chef-recipe-hunter-client-side-Samshuleeecuet created by GitHub Classroom
 # Site Details
  Live-Link: https://bangla-food-30c0b.web.app/
  
-# Features
+# Features Use
 
 **1. Lottiefiles** 
 
