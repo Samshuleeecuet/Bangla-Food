@@ -36,13 +36,10 @@ const Register = () => {
             const msg = err.message.split('/');
             setError(msg[1]);
         })
-
-
     }
-
-
+    
     return (
-        <div className='mx-auto w-2/5 mt-14 lg:my-28'>
+        <div className='mx-auto w-4/5 lg:w-2/5 mt-14 lg:my-28'>
             <h2 className='text-center text-2xl font-extrabold pb-10 '>Please Register</h2>
             <Form onSubmit={handleRegister} className='mb-5 '>
             <div className="mb-4">

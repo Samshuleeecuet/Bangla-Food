@@ -49,9 +49,6 @@ const Login = () => {
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                     Log In
                 </button>
-                <Link className="block lg:inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
-                    Forgot Password?
-                </Link>
             </div>
             </Form>
             <hr className='border '/>
